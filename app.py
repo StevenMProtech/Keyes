@@ -337,7 +337,7 @@ def submit_form():
         <p>A The Keyes Company equity expert will review your goals and contact you shortly.</p>
         <div class="highlight">
             <p><strong style="color: #004237; display: block; margin-bottom: 10px;">What's Next?</strong>
-            We'll show you how our Guaranteed Move®, 2,400+ agent network, and in-house services can help you capture the high end of your equity range.</p>
+            We'll show you how our proven systems, 4,000+ agent network, and in-house services can help you capture the high end of your equity range.</p>
         </div>
         <div class="footer">Together, We're Better at Unlocking Your Equity</div>
         <a href="/" class="back-btn">← Back to Dashboard</a>
