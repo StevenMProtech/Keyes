@@ -59,8 +59,10 @@ def index():
         .sidebar {{
             background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
             padding: 30px;
-            overflow-y: auto;
             border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            width: 350px;
         }}
         .logo {{
             font-size: 28px;
@@ -101,10 +103,16 @@ def index():
             font-size: 12px;
             margin-top: 5px;
         }}
+        .stats-container {{
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }}
         .actions {{
-            margin-top: 30px;
+            margin-top: auto;
             padding-top: 20px;
             border-top: 1px solid #333;
+            flex-shrink: 0;
         }}
         .actions h3 {{
             color: white;
@@ -209,6 +217,7 @@ def index():
             <div class="logo">The <span style="font-style: italic; font-family: Georgia, serif;">Keyes</span> Company</div>
             <div class="tagline">Your Home Equity Campaign Dashboard</div>
             
+            <div class="stats-container">
             <div class="stat-card">
                 <h3>Total Submissions</h3>
                 <div class="number">{total}</div>
@@ -237,6 +246,7 @@ def index():
                 <h3>Balanced</h3>
                 <div class="number">{balance}</div>
                 <div class="label">Best of both</div>
+            </div>
             </div>
             
             <div class="actions">
@@ -458,6 +468,30 @@ def view_submissions():
         th {{ background: #004237; color: white; padding: 16px 12px; text-align: left; }}
         td {{ padding: 14px 12px; border-bottom: 1px solid #e0e0e0; }}
         tr:hover {{ background: #f0f8ed; }}
+        .zoom-controls {{
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }}
+        .zoom-btn {{
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }}
+        .zoom-btn:hover {{
+            background: rgba(255,255,255,0.3);
+        }}
+        .zoom-level {{
+            font-size: 12px;
+            color: white;
+            min-width: 45px;
+            text-align: center;
+        }}
     </style>
 </head>
 <body>
@@ -466,7 +500,14 @@ def view_submissions():
             <div class="logo">The <span style="font-style: italic; font-family: Georgia, serif;">Keyes</span> Company</div>
             <h1>All Submissions</h1>
         </div>
-        <a href="/">← Dashboard</a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <div class="zoom-controls">
+                <button class="zoom-btn" onclick="zoomOut()">−</button>
+                <span class="zoom-level" id="zoomLevel">100%</span>
+                <button class="zoom-btn" onclick="zoomIn()">+</button>
+            </div>
+            <a href="/">← Dashboard</a>
+        </div>
     </div>
     <table>
         <tr>
@@ -474,6 +515,25 @@ def view_submissions():
         </tr>
         {rows_html if rows_html else '<tr><td colspan="10" style="text-align: center; padding: 60px; color: #999;">No submissions yet</td></tr>'}
     </table>
+    <script>
+        let currentZoom = 1.0;
+        function zoomIn() {{
+            if (currentZoom < 1.5) {{
+                currentZoom += 0.1;
+                updateZoom();
+            }}
+        }}
+        function zoomOut() {{
+            if (currentZoom > 0.5) {{
+                currentZoom -= 0.1;
+                updateZoom();
+            }}
+        }}
+        function updateZoom() {{
+            document.querySelector('table').style.zoom = currentZoom;
+            document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
+        }}
+    </script>
 </body>
 </html>"""
 
