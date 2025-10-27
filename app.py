@@ -74,15 +74,15 @@ def index():
         .tagline {{
             color: #999;
             font-size: 14px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid #333;
         }}
         .stat-card {{
             background: rgba(0, 66, 55, 0.15);
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-left: 3px solid #fcbfa7;
         }}
         .stat-card h3 {{
@@ -93,7 +93,7 @@ def index():
             margin-bottom: 8px;
         }}
         .stat-card .number {{
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 700;
             color: #fcbfa7;
             line-height: 1;
