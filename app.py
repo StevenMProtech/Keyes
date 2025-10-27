@@ -80,28 +80,28 @@ def index():
         }}
         .stat-card {{
             background: rgba(0, 66, 55, 0.15);
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
             border-left: 3px solid #fcbfa7;
         }}
         .stat-card h3 {{
             color: #999;
-            font-size: 10px;
+            font-size: 9px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }}
         .stat-card .number {{
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: #fcbfa7;
             line-height: 1;
         }}
         .stat-card .label {{
             color: #999;
-            font-size: 12px;
-            margin-top: 5px;
+            font-size: 11px;
+            margin-top: 3px;
         }}
         .stats-container {{
             flex: 1;
@@ -383,11 +383,50 @@ def submit_form():
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
+            transition: all 0.3s ease;
         }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 66, 55, 0.3);
+        }
+        .zoom-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            z-index: 1000;
+        }
+        .zoom-btn {
+            background: #004237;
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .zoom-btn:hover { background: #003329; transform: scale(1.1); }
+        .zoom-level { font-size: 13px; color: #666; font-weight: 600; min-width: 45px; text-align: center; }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="zoom-controls">
+        <button class="zoom-btn" onclick="zoomOut()">−</button>
+        <span class="zoom-level" id="zoomLevel">100%</span>
+        <button class="zoom-btn" onclick="zoomIn()">+</button>
+    </div>
+    <div class="container" id="content">
         <div class="logo"><img src="https://raw.githubusercontent.com/StevenMProtech/Keyes/main/keyes-new-logo.png" alt="Keyes"></div>
         <div class="checkmark"></div>
         <h1>Thank You!</h1>
@@ -400,6 +439,25 @@ def submit_form():
         <div class="footer">Your Fresh Start, Starts Here</div>
         <a href="/" class="back-btn">← Back to Dashboard</a>
     </div>
+    <script>
+        let zoomLevel = 100;
+        function updateZoom() {
+            document.getElementById('content').style.transform = `scale(${zoomLevel / 100})`;
+            document.getElementById('zoomLevel').textContent = zoomLevel + '%';
+        }
+        function zoomIn() {
+            if (zoomLevel < 150) {
+                zoomLevel += 10;
+                updateZoom();
+            }
+        }
+        function zoomOut() {
+            if (zoomLevel > 50) {
+                zoomLevel -= 10;
+                updateZoom();
+            }
+        }
+    </script>
 </body>
 </html>"""
 
@@ -554,6 +612,4 @@ def export_csv():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5002))
     app.run(host='0.0.0.0', port=port, debug=False)
-
-
 
