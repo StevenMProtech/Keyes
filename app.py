@@ -80,20 +80,20 @@ def index():
         }}
         .stat-card {{
             background: rgba(0, 66, 55, 0.15);
-            padding: 15px;
+            padding: 12px 15px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             border-left: 3px solid #fcbfa7;
         }}
         .stat-card h3 {{
             color: #999;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }}
         .stat-card .number {{
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #fcbfa7;
             line-height: 1;
@@ -331,7 +331,7 @@ def submit_form():
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e3 100%);
+            background: #f7f3e5;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -367,11 +367,11 @@ def submit_form():
         h1 { color: #004237; font-size: 36px; margin-bottom: 20px; }
         p { color: #666; font-size: 18px; line-height: 1.6; margin-bottom: 15px; }
         .highlight {
-            background: linear-gradient(135deg, #f0f8ed 0%, #e8f5e3 100%);
+            background: rgba(252, 191, 167, 0.1);
             padding: 25px;
             border-radius: 12px;
             margin-top: 30px;
-            border-left: 4px solid #004237;
+            border-left: 4px solid #fcbfa7;
         }
         .footer { margin-top: 40px; font-size: 14px; color: #999; font-style: italic; }
         .back-btn {
@@ -554,4 +554,6 @@ def export_csv():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5002))
     app.run(host='0.0.0.0', port=port, debug=False)
+
+
 
