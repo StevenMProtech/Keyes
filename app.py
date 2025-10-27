@@ -167,7 +167,7 @@ def index():
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             transform: scale(0.75);
             transform-origin: top center;
-        }}}
+        }}
         @media (max-width: 1024px) {{
             .dashboard {{
                 grid-template-columns: 1fr;
