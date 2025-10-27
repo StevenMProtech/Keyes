@@ -139,14 +139,13 @@ def index():
             overflow-y: auto;
             padding: 40px 20px;
         }}
-        .preview iframe,
-        .preview .email-container {{
-            zoom: 0.7;
-        }}
         .preview-header {{
             background: white;
             padding: 20px 30px;
             margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             display: flex;
@@ -164,6 +163,29 @@ def index():
             border-radius: 4px;
             font-size: 12px;
             font-weight: 600;
+        }}
+        .zoom-controls {{
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }}
+        .zoom-btn {{
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }}
+        .zoom-btn:hover {{
+            background: #e0e0e0;
+        }}
+        .zoom-level {{
+            font-size: 12px;
+            color: #666;
+            min-width: 45px;
+            text-align: center;
         }}
         .email-container {{
             max-width: 650px;
@@ -227,9 +249,35 @@ def index():
         
         <div class="preview">
             <div class="preview-header">
-                <h2>Live Email Campaign Preview</h2>
-                <div class="badge">LIVE & TESTABLE</div>
+                <div>
+                    <h2>Live Email Campaign Preview</h2>
+                </div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoomOut()">−</button>
+                    <span class="zoom-level" id="zoomLevel">100%</span>
+                    <button class="zoom-btn" onclick="zoomIn()">+</button>
+                    <div class="badge">LIVE & TESTABLE</div>
+                </div>
             </div>
+            <script>
+                let currentZoom = 1.0;
+                function zoomIn() {{
+                    if (currentZoom < 1.5) {{
+                        currentZoom += 0.1;
+                        updateZoom();
+                    }}
+                }}
+                function zoomOut() {{
+                    if (currentZoom > 0.5) {{
+                        currentZoom -= 0.1;
+                        updateZoom();
+                    }}
+                }}
+                function updateZoom() {{
+                    document.querySelector('.email-container').style.zoom = currentZoom;
+                    document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
+                }}
+            </script>
             <div class="email-container">
                 {email_html}
             </div>
@@ -288,8 +336,8 @@ def submit_form():
             box-shadow: 0 8px 32px rgba(0,0,0,0.12);
             text-align: center;
         }
-        .logo { font-size: 32px; font-weight: 700; margin-bottom: 30px; }
-        .logo span { color: #fcbfa7; }
+        .logo { margin-bottom: 30px; }
+        .logo img { width: 180px; height: auto; }
         .checkmark {
             width: 80px;
             height: 80px;
@@ -330,16 +378,16 @@ def submit_form():
 </head>
 <body>
     <div class="container">
-        <div class="logo">The <span style="font-style: italic; font-family: Georgia, serif;">Keyes</span> Company</div>
+        <div class="logo"><img src="https://raw.githubusercontent.com/StevenMProtech/Keyes/main/keyes-new-logo.png" alt="Keyes"></div>
         <div class="checkmark"></div>
         <h1>Thank You!</h1>
         <p><strong>Your equity strategy request has been received.</strong></p>
-        <p>A The Keyes Company equity expert will review your goals and contact you shortly.</p>
+        <p>A Keyes equity expert will review your goals and contact you shortly.</p>
         <div class="highlight">
             <p><strong style="color: #004237; display: block; margin-bottom: 10px;">What's Next?</strong>
-            We'll show you how our Guaranteed Move®, 2,400+ agent network, and in-house services can help you capture the high end of your equity range.</p>
+            We'll show you how our 4,000+ agent network, exclusive pre-MLS exposure, and nearly 100 years of Florida expertise can help you capture the high end of your equity range.</p>
         </div>
-        <div class="footer">Together, We're Better at Unlocking Your Equity</div>
+        <div class="footer">Your Fresh Start, Starts Here</div>
         <a href="/" class="back-btn">← Back to Dashboard</a>
     </div>
 </body>
