@@ -77,11 +77,11 @@ def index():
             border-bottom: 1px solid #333;
         }}
         .stat-card {{
-            background: rgba(90, 159, 62, 0.1);
+            background: rgba(0, 66, 55, 0.15);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 15px;
-            border-left: 3px solid #004237;
+            border-left: 3px solid #fcbfa7;
         }}
         .stat-card h3 {{
             color: #999;
@@ -93,11 +93,11 @@ def index():
         .stat-card .number {{
             font-size: 36px;
             font-weight: 700;
-            color: #004237;
+            color: #fcbfa7;
             line-height: 1;
         }}
         .stat-card .label {{
-            color: #666;
+            color: #999;
             font-size: 12px;
             margin-top: 5px;
         }}
