@@ -139,6 +139,10 @@ def index():
             overflow-y: auto;
             padding: 40px 20px;
         }}
+        .preview iframe,
+        .preview .email-container {{
+            zoom: 0.7;
+        }}
         .preview-header {{
             background: white;
             padding: 20px 30px;
